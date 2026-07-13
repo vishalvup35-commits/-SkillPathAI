@@ -74,7 +74,7 @@ app.get('/api/health', (req, res) => res.json({ status: 'ok', message: 'SkillPat
 if (process.env.NODE_ENV === 'production') {
   const __dirname = path.resolve();
   app.use(express.static(path.join(__dirname, '../skillpath-frontend/dist')));
-  app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, '../skillpath-frontend/dist', 'index.html')));
+  app.get('*', (req, res)=> res.sendFile(path.resolve(__dirname, '../skillpath-frontend/dist', 'index.html')));
 } else {
   app.get('/', (req, res) => res.send('API is running....'));
 }
@@ -83,7 +83,7 @@ if (process.env.NODE_ENV === 'production') {
 app.use(notFound);
 app.use(errorHandler);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
   console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);

@@ -1,7 +1,7 @@
 import Profile from '../models/Profile.js';
 import Roadmap from '../models/Roadmap.js';
 import Progress from '../models/Progress.js';
-import { generateRoadmapWithAI } from '../services/aiService.js';
+import { generateRoadmapWithAI } from '../services/aiServices.js';
 
 // @desc    Create profile and generate initial roadmap
 // @route   POST /api/profiles

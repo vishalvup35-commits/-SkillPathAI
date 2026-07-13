@@ -1,6 +1,6 @@
 import Roadmap from '../models/Roadmap.js';
 import Progress from '../models/Progress.js';
-import { generateRoadmapWithAI } from '../services/aiService.js';
+import { generateRoadmapWithAI } from '../services/aiServices.js';
 
 // @desc    Get user's current roadmap
 // @route   GET /api/roadmaps/me

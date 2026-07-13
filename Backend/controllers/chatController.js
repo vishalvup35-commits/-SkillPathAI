@@ -1,6 +1,6 @@
 import ChatHistory from '../models/ChatHistory.js';
 import crypto from 'crypto';
-import { chatWithAI } from '../services/aiService.js';
+import { chatWithAI } from '../services/aiServices.js';
 
 // @desc    Send a message to AI and get response
 // @route   POST /api/chat

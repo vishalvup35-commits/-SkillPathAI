@@ -1,4 +1,4 @@
-import { generateStepLesson, generateStepQuiz } from '../services/aiService.js';
+import { generateStepLesson, generateStepQuiz } from '../services/aiServices.js';
 
 // @desc    Get an AI-generated lesson for a topic
 // @route   POST /api/learning/lesson

@@ -1,6 +1,6 @@
 import SavedProject from '../models/SavedProject.js';
 import Profile from '../models/Profile.js';
-import { generateProjectRecommendations } from '../services/aiService.js';
+import { generateProjectRecommendations } from '../services/aiServices.js';
 
 // @desc    Get AI project recommendations based on user level
 // @route   GET /api/projects/recommendations

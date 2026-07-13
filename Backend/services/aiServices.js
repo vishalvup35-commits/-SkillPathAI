@@ -1,5 +1,5 @@
 import Groq from 'groq-sdk';
-import { generateFallbackRoadmap, generateFallbackProjects } from './fallbackService.js';
+import { generateFallbackRoadmap, generateFallbackProjects } from './fallbackServices.js';
 
 // Initialize Groq lazily so process.env is loaded
 let groqInstance = null;
