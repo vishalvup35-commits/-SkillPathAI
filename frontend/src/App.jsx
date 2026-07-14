@@ -6,7 +6,7 @@ import LandingPage from './pages/LandingPage.jsx'
 import AboutPage from './pages/AboutPage.jsx'
 import LoginPage from './pages/LoginPage.jsx'
 import RegisterPage from './pages/RegisterPage.jsx'
-import OnboardingPage from './pages/OnboardingPage.jsx'
+import OnBoardingPage from './pages/OnBoardingPage.jsx'
 import DashboardPage from './pages/DashboardPage.jsx'
 import RoadmapPage from './pages/RoadmapPage.jsx'
 import ChatPage from './pages/ChatPage.jsx'
@@ -26,7 +26,7 @@ const App = () => {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
 
-      <Route path="/onboarding" element={<ProtectedRoute><OnboardingPage /></ProtectedRoute>} />
+      <Route path="/onboarding" element={<ProtectedRoute><OnBoardingPage /></ProtectedRoute>} />
       <Route path="/dashboard" element={<ProtectedRoute><DashboardPage /></ProtectedRoute>} />
       <Route path="/roadmap" element={<ProtectedRoute><RoadmapPage /></ProtectedRoute>} />
       <Route path="/chat" element={<ProtectedRoute><ChatPage /></ProtectedRoute>} />
@@ -44,3 +44,5 @@ const App = () => {
 }
 
 export default App
+
+

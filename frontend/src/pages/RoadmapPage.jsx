@@ -9,8 +9,8 @@ import Button from '../components/ui/Button'
 import useRoadmap from '../hooks/useRoadmap'
 import { getLevelColor } from '../utils/helpers'
 import toast from 'react-hot-toast'
-import LessonModal from '../components/learning/LessonModal'
-import QuizModal from '../components/learning/QuizModal'
+import LessonModal from '../components/learning/LessonModal.jsx'
+import QuizModal from '../components/learning/QuizModal.jsx'
 
 const RoadmapPage = () => {
   const { roadmap, progress, isLoading, markStep, regenerate, getLesson, getQuiz } = useRoadmap()
