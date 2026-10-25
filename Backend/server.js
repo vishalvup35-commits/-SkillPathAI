@@ -33,6 +33,7 @@ app.set('trust proxy', 1);
 
 // Security and utility middleware
 app.use(helmet());
+
 const clientUrl = process.env.CLIENT_URL;
 const allowedOrigins = [
   'http://localhost:5173',
@@ -40,9 +41,13 @@ const allowedOrigins = [
   clientUrl ? clientUrl.replace(/\/$/, '') : null
 ].filter(Boolean);
 
+// Vercel deployment/preview addresses that belong to YOUR account only
+// e.g. https://skill-path-ioc7bn6p2-vishal-maurya1.vercel.app
+const vercelPattern = /^https:\/\/skill-path[a-z0-9-]*-vishal-maurya1\.vercel\.app$/;
+
 app.use(cors({
   origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
+    if (!origin || allowedOrigins.includes(origin) || vercelPattern.test(origin)) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
