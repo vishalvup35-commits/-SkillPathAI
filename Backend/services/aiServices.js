@@ -1,6 +1,10 @@
 import Groq from 'groq-sdk';
 import { generateFallbackRoadmap, generateFallbackProjects } from './fallbackServices.js';
 
+// Groq retired llama-3.3-70b-versatile on 16 Aug 2026.
+// Change the model on Render with the GROQ_MODEL variable, no code edit needed.
+const getModel = () => process.env.GROQ_MODEL || 'openai/gpt-oss-120b';
+
 // Initialize Groq lazily so process.env is loaded
 let groqInstance = null;
 const getGroq = () => {
@@ -41,7 +45,7 @@ export const generateRoadmapWithAI = async (goal, level, weeklyHours) => {
   try {
     const completion = await groq.chat.completions.create({
       messages: [{ role: 'user', content: prompt }],
-      model: 'llama-3.3-70b-versatile',
+      model: getModel(),
       temperature: 0.3, // Lower temperature for more consistent JSON
     });
 
@@ -96,7 +100,7 @@ export const generateProjectRecommendations = async (difficulty) => {
   try {
     const completion = await groq.chat.completions.create({
       messages: [{ role: 'user', content: prompt }],
-      model: 'llama-3.3-70b-versatile',
+      model: getModel(),
       temperature: 0.5,
     });
 
@@ -128,9 +132,9 @@ export const chatWithAI = async (messages) => {
   try {
     const completion = await groq.chat.completions.create({
       messages: formattedMessages,
-      model: 'llama-3.3-70b-versatile',
+      model: getModel(),
       temperature: 0.7,
-      max_tokens: 1024,
+      max_tokens: 2048,
     });
 
     return completion.choices[0]?.message?.content || "I'm sorry, I couldn't process that.";
@@ -162,7 +166,7 @@ export const generateStepLesson = async (topic, description) => {
   try {
     const completion = await groq.chat.completions.create({
       messages: [{ role: 'user', content: prompt }],
-      model: 'llama-3.3-70b-versatile',
+      model: getModel(),
       temperature: 0.5,
     });
 
@@ -198,7 +202,7 @@ export const generateStepQuiz = async (topic, description) => {
   try {
     const completion = await groq.chat.completions.create({
       messages: [{ role: 'user', content: prompt }],
-      model: 'llama-3.3-70b-versatile',
+      model: getModel(),
       temperature: 0.3,
     });
 
