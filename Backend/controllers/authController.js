@@ -1,5 +1,5 @@
 import User from '../models/User.js';
-import generateToken from '../utils/generateToken.js';
+import generateToken, { cookieOptions } from '../utils/generateToken.js';
 import { isValidEmail, isValidPassword } from '../utils/validators.js';
 
 // @desc    Register a new user
@@ -23,7 +23,9 @@ export const registerUser = async (req, res) => {
     throw new Error('Password must be at least 6 characters');
   }
 
-  const userExists = await User.findOne({ email });
+  const normalizedEmail = email.trim().toLowerCase();
+
+  const userExists = await User.findOne({ email: normalizedEmail });
 
   if (userExists) {
     res.status(400);
@@ -32,7 +34,7 @@ export const registerUser = async (req, res) => {
 
   const user = await User.create({
     name,
-    email,
+    email: normalizedEmail,
     password
   });
 
@@ -58,7 +60,7 @@ export const registerUser = async (req, res) => {
 export const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
-  const user = await User.findOne({ email });
+  const user = await User.findOne({ email: (email || '').trim().toLowerCase() });
 
   if (user && !user.isActive) {
     res.status(401);
@@ -86,7 +88,7 @@ export const loginUser = async (req, res) => {
 // @access  Public
 export const logoutUser = (req, res) => {
   res.cookie('jwt', '', {
-    httpOnly: true,
+    ...cookieOptions,
     expires: new Date(0)
   });
   res.status(200).json({ message: 'Logged out successfully' });
@@ -96,7 +98,6 @@ export const logoutUser = (req, res) => {
 // @route   GET /api/auth/me
 // @access  Private
 export const getMe = async (req, res) => {
-  // req.user is set by the protect middleware
   res.status(200).json({
     user: {
       _id: req.user._id,
